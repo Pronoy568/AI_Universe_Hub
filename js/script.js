@@ -13,10 +13,10 @@ const dataShow = (data) => {
   data.map((item) => {
     const divCard = document.createElement("div");
     divCard.innerHTML = `
-      <div class="card h-100">
+      <div class="card h-100 p-2 border-2 border-light-subtle">
             <img src=${item.image} class="card-img-top h-100 rounded-4" alt=${item.name} >
-            <div class="card-body">
-                <h2 class="card-title">Features</h2>
+            <div class="card-body pb-0">
+                <h3 class="card-title fw-bolder">Features</h3>
                 <p class="card-text">
                     <p>
                     1.${item.features[0]}
@@ -29,12 +29,21 @@ const dataShow = (data) => {
                     </p>
                 </p>
             </div>
-            <div class="card-footer">
+            <div class="text-success">
+              <hr>
+            </div>
+            <div class="d-flex align-items-center justify-content-between px-2">
                 <div>
-                    <h1>${item.name}</h1>
+                    <h2>${item.name}</h2>
+                    <div class="d-flex align-items-center">
+                      <i class="fa-regular fa-calendar-days"></i>
+                      <h4 class="ms-2">${item.published_in}</h4>
+                    </div>
                 </div>
                 <div>
-                    <i class="fa-solid fa-circle-arrow-right"></i>
+                  <button type="button" class="btn btn-light">
+                      <i class="fa-solid fa-circle-arrow-right fs-2"></i>
+                  </button>
                 </div>
             </div>
        </div>
