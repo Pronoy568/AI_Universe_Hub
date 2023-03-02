@@ -3,7 +3,9 @@ const dataLoad = () => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
   fetch(url)
     .then((response) => response.json())
-    .then((data) => dataShow(data.data.tools));
+    .then((data) => {
+      dataShow(data.data.tools);
+    });
 };
 
 // data show
@@ -14,7 +16,9 @@ const dataShow = (data) => {
     const divCard = document.createElement("div");
     divCard.innerHTML = `
       <div class="card h-100 p-2 border-2 border-light-subtle">
-            <img src=${item.image} class="card-img-top h-100 rounded-4" alt=${item.name} >
+            <img src=${item.image} class="card-img-top h-100 rounded-4" alt=${
+      item.name
+    } >
             <div class="card-body pb-0">
                 <h3 class="card-title fw-bolder">Features</h3>
                 <p class="card-text">
@@ -25,7 +29,7 @@ const dataShow = (data) => {
                     2.${item.features[1]}
                     </p>
                     <p>
-                    3.${item.features[2]}
+                    3.${item.features[2] ? item.features[2] : "Not available"}
                     </p>
                 </p>
             </div>
@@ -50,6 +54,18 @@ const dataShow = (data) => {
     `;
     showCard.appendChild(divCard);
   });
+  toggle(false);
 };
 
+// loader
+const loader = document.getElementById("loader");
+const toggle = (isLoading) => {
+  if (isLoading) {
+    loader.classList.remove("d-none");
+  } else {
+    loader.classList.add("d-none");
+  }
+};
+
+toggle(true);
 dataLoad();
