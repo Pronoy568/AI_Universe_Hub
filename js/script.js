@@ -1,18 +1,26 @@
 // data load
-const dataLoad = () => {
+const dataLoad = (limit) => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      dataShow(data.data.tools);
+      dataShow(data.data.tools, limit);
     });
 };
 
 // data show
 const showCard = document.getElementById("showCard");
+const showALL = document.getElementById("showALL");
 
-const dataShow = (data) => {
-  data.map((item) => {
+const dataShow = (data, limit) => {
+  dataSlice = data.slice(0, limit);
+  if (dataSlice.length === 6) {
+    showALL.classList.remove("d-none");
+  } else {
+    dataSlice = data.slice(6, limit);
+    showALL.classList.add("d-none");
+  }
+  dataSlice.map((item) => {
     const divCard = document.createElement("div");
     divCard.innerHTML = `
       <div class="card h-100 p-2 border-2 border-light-subtle">
@@ -68,4 +76,11 @@ const toggle = (isLoading) => {
 };
 
 toggle(true);
-dataLoad();
+dataLoad(6);
+
+// show more button
+const showMoreBtn = document.getElementById("showMoreBtn");
+
+showMoreBtn.addEventListener("click", () => {
+  dataLoad(12);
+});
