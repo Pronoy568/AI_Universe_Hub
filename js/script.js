@@ -99,15 +99,50 @@ const detailDataLoad = (id) => {
 };
 
 const detailsShow = (data) => {
-  console.log(data);
-  const detailsShowTitle = document.getElementById("detailsShowTitle");
   const detailsShowDescription = document.getElementById(
     "detailsShowDescription"
   );
-  detailsShowTitle.innerText = `${data.tool_name}`;
   detailsShowDescription.innerHTML = `
   <div>
-  
+    <div>
+      <h2>${data.description}</h2>
+      <div>
+        <div>
+          <p>${data.pricing[0].price}</p>
+          <p>${data.pricing[0].plan}</p>
+        </div>
+        <div>
+          <p>${data.pricing[1].price}</p>
+          <p>${data.pricing[1].plan}</p>
+        </div>
+        <div>
+          <p>${data.pricing[2].price}</p>
+          <p>${data.pricing[2].plan}</p>
+        </div>
+      </div>
+      <div>
+        <h2>Features</h2>
+        <ul>
+          <li>${data.features[1].feature_name}</li>
+          <li>${data.features[2].feature_name}</li>
+          <li>${data.features[3].feature_name}</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Integrations</h2>
+        <ul>
+           <li>${data.integrations[0]}</li> 
+           <li>${data.integrations[1]}</li> 
+           <li>${data.integrations[2]}</li> 
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h1>${data.accuracy.score * 100}</h1>
+      <img src=${data.image_link[0]} />
+      <p>${data.input_output_examples[0].input}</p>
+      <p>${data.input_output_examples[0].output}</p>
+    </div>
   </div>
   `;
 };
