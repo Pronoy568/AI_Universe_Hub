@@ -53,7 +53,9 @@ const dataShow = (data, limit) => {
                     </div>
                 </div>
                 <div>
-                  <button type="button" class="btn btn-light">
+                  <button onclick="detailDataLoad('${
+                    item.id
+                  }')" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#aiDetailsModal">
                       <i class="fa-solid fa-circle-arrow-right fs-2"></i>
                   </button>
                 </div>
@@ -84,3 +86,28 @@ const showMoreBtn = document.getElementById("showMoreBtn");
 showMoreBtn.addEventListener("click", () => {
   dataLoad(12);
 });
+
+// details show
+
+const detailDataLoad = (id) => {
+  const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      detailsShow(data.data);
+    });
+};
+
+const detailsShow = (data) => {
+  console.log(data);
+  const detailsShowTitle = document.getElementById("detailsShowTitle");
+  const detailsShowDescription = document.getElementById(
+    "detailsShowDescription"
+  );
+  detailsShowTitle.innerText = `${data.tool_name}`;
+  detailsShowDescription.innerHTML = `
+  <div>
+  
+  </div>
+  `;
+};
