@@ -104,19 +104,33 @@ const detailsShow = (data) => {
   );
   detailsShowDescription.innerHTML = `
   <div class="d-flex justify-content-center align-items-center p-4 flex-column flex-md-row">
-    <div class="p-3 border border-2 border-danger-subtle rounded-3 mx-1 bg-danger-subtle">
-      <h6 class="fw-bold mb-3">${data.description}</h6>
+    <div class="p-3 mb-3 mb-md-0 border border-2 border-danger-subtle rounded-3 mx-1 bg-danger-subtle">
+      <h6 class="fw-bold mb-3">${
+        data.description ? data.description : "Not available"
+      }</h6>
       <div class="d-flex justify-content-around align-items-center">
         <div class="p-2 bg-white rounded-4 fw-semibold text-success me-3 hWCustom">
-          <span>${data.pricing[0].price}</span>
+          <span>${
+            data.pricing[0].price !== "No cost"
+              ? data.pricing[0].price
+              : "Free of Cost/"
+          }</span>
           <span>${data.pricing[0].plan}</span>
         </div>
         <div class="p-2 bg-white rounded-4 fw-semibold text-warning me-3 hWCustom">
-          <span>${data.pricing[1].price}</span>
+          <span>${
+            data.pricing[1].price !== "No cost"
+              ? data.pricing[1].price
+              : "Free of Cost/"
+          }</span>
           <span>${data.pricing[1].plan}</span>
         </div>
         <div class="p-2 bg-white rounded-4 fw-semibold text-danger hWCustom">
-          <span>${data.pricing[2].price}</span>
+          <span>${
+            data.pricing[2].price !== "No cost"
+              ? data.pricing[2].price
+              : "Free of Cost/"
+          }</span>
           <span>${data.pricing[2].plan}</span>
         </div>
       </div>
@@ -126,17 +140,29 @@ const detailsShow = (data) => {
           <ul>
             <li>
               <small>
-               ${data.features[1].feature_name}
+               ${
+                 data.features[1].feature_name
+                   ? data.features[1].feature_name
+                   : "Not Available"
+               }
               </small>
             </li>
             <li>              
               <small>
-               ${data.features[2].feature_name}
+               ${
+                 data.features[2].feature_name
+                   ? data.features[2].feature_name
+                   : "Not Available"
+               }
               </small>
             </li>
             <li>              
               <small>
-               ${data.features[3].feature_name}
+               ${
+                 data.features[3].feature_name
+                   ? data.features[3].feature_name
+                   : "Not Available"
+               }
               </small>
             </li>
           </ul>
@@ -145,23 +171,41 @@ const detailsShow = (data) => {
           <h5 class="fw-bolder">Integrations</h5>
           <ul>
             <small>
-              <li>${data.integrations[0]}</li> 
+              <li>${
+                data.integrations[0] ? data.integrations[0] : "Not available"
+              }</li> 
             </small>
             <small>
-              <li>${data.integrations[1]}</li> 
+              <li>${
+                data.integrations[1] ? data.integrations[1] : "Not available"
+              }</li> 
             </small>
             <small>
-              <li>${data.integrations[2]}</li> 
+              <li>${
+                data.integrations[2] ? data.integrations[2] : "Not available"
+              }</li> 
             </small>
           </ul>
         </div>
       </div>
     </div>
-    <div class="p-3 border rounded-3 mx-1">
-      <h1>${data.accuracy.score * 100}</h1>
+    <div class="p-3 border rounded-3 mx-1 position-relative">
+      <span class="badge bg-danger position-absolute top-10 start-50 ms-5 mt-2">${
+        data.accuracy.score * 100
+          ? data.accuracy.score * 100 + "% accuracy"
+          : ""
+      }</span>
       <img class="w-100 rounded-3 mb-2" src=${data.image_link[0]} />
-      <h5>${data.input_output_examples[0].input}</h5>
-      <p>${data.input_output_examples[0].output}</p>
+      <h5>${
+        data.input_output_examples[0].input
+          ? data.input_output_examples[0].input
+          : "No available"
+      }</h5>
+      <p>${
+        data.input_output_examples[0].output
+          ? data.input_output_examples[0].output
+          : "No! Not Yet! Take a break!!!"
+      }</p>
     </div>
   </div>
   `;
