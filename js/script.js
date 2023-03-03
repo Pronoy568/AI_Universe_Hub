@@ -13,13 +13,14 @@ const showCard = document.getElementById("showCard");
 const showALL = document.getElementById("showALL");
 
 const dataShow = (data, limit) => {
-  dataSlice = data.slice(0, limit);
+  let dataSlice = data.slice(0, limit);
   if (dataSlice.length === 6) {
     showALL.classList.remove("d-none");
   } else {
     dataSlice = data.slice(6, limit);
     showALL.classList.add("d-none");
   }
+
   dataSlice.map((item) => {
     const divCard = document.createElement("div");
     divCard.innerHTML = `
@@ -87,8 +88,7 @@ showMoreBtn.addEventListener("click", () => {
   dataLoad(12);
 });
 
-// details show
-
+// details data show in modal
 const detailDataLoad = (id) => {
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
   fetch(url)
@@ -110,28 +110,16 @@ const detailsShow = (data) => {
       }</h6>
       <div class="d-flex justify-content-around align-items-center">
         <div class="p-2 bg-white rounded-4 fw-semibold text-success me-3 hWCustom">
-          <span>${
-            data.pricing[0].price !== "No cost"
-              ? data.pricing[0].price
-              : "Free of Cost/"
-          }</span>
-          <span>${data.pricing[0].plan}</span>
+          <span>${data.pricing ? data.pricing[0].price : "Free of Cost/"}</span>
+          <span>${data.pricing ? data.pricing[0].plan : ""}</span>
         </div>
         <div class="p-2 bg-white rounded-4 fw-semibold text-warning me-3 hWCustom">
-          <span>${
-            data.pricing[1].price !== "No cost"
-              ? data.pricing[1].price
-              : "Free of Cost/"
-          }</span>
-          <span>${data.pricing[1].plan}</span>
+          <span>${data.pricing ? data.pricing[1].price : "Free of Cost/"}</span>
+          <span>${data.pricing ? data.pricing[1].plan : ""}</span>
         </div>
         <div class="p-2 bg-white rounded-4 fw-semibold text-danger hWCustom">
-          <span>${
-            data.pricing[2].price !== "No cost"
-              ? data.pricing[2].price
-              : "Free of Cost/"
-          }</span>
-          <span>${data.pricing[2].plan}</span>
+          <span>${data.pricing ? data.pricing[2].price : "Free of Cost/"}</span>
+          <span>${data.pricing ? data.pricing[2].plan : ""}</span>
         </div>
       </div>
       <div class="d-flex justify-content-around">
@@ -172,17 +160,17 @@ const detailsShow = (data) => {
           <ul>
             <small>
               <li>${
-                data.integrations[0] ? data.integrations[0] : "Not available"
+                data.integrations ? data.integrations[0] : "Not available"
               }</li> 
             </small>
             <small>
               <li>${
-                data.integrations[1] ? data.integrations[1] : "Not available"
+                data.integrations ? data.integrations[1] : "Not available"
               }</li> 
             </small>
             <small>
               <li>${
-                data.integrations[2] ? data.integrations[2] : "Not available"
+                data.integrations ? data.integrations[2] : "Not available"
               }</li> 
             </small>
           </ul>
@@ -197,12 +185,12 @@ const detailsShow = (data) => {
       }</span>
       <img class="w-100 rounded-3 mb-2" src=${data.image_link[0]} />
       <h5>${
-        data.input_output_examples[0].input
+        data.input_output_examples
           ? data.input_output_examples[0].input
           : "No available"
       }</h5>
       <p>${
-        data.input_output_examples[0].output
+        data.input_output_examples
           ? data.input_output_examples[0].output
           : "No! Not Yet! Take a break!!!"
       }</p>
