@@ -3,6 +3,11 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
+.hWCustom {
+  width: 100px;
+  height: 100px;
+}
+
 @media (max-width: 768px) {
   .grid_custom {
     grid-template-columns: repeat(1, 1fr);

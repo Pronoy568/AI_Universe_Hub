@@ -103,44 +103,64 @@ const detailsShow = (data) => {
     "detailsShowDescription"
   );
   detailsShowDescription.innerHTML = `
-  <div>
-    <div>
-      <h2>${data.description}</h2>
-      <div>
-        <div>
-          <p>${data.pricing[0].price}</p>
-          <p>${data.pricing[0].plan}</p>
+  <div class="d-flex justify-content-center align-items-center p-4 flex-column flex-md-row">
+    <div class="p-3 border border-2 border-danger-subtle rounded-3 mx-1 bg-danger-subtle">
+      <h6 class="fw-bold mb-3">${data.description}</h6>
+      <div class="d-flex justify-content-around align-items-center">
+        <div class="p-2 bg-white rounded-4 fw-semibold text-success me-3 hWCustom">
+          <span>${data.pricing[0].price}</span>
+          <span>${data.pricing[0].plan}</span>
         </div>
-        <div>
-          <p>${data.pricing[1].price}</p>
-          <p>${data.pricing[1].plan}</p>
+        <div class="p-2 bg-white rounded-4 fw-semibold text-warning me-3 hWCustom">
+          <span>${data.pricing[1].price}</span>
+          <span>${data.pricing[1].plan}</span>
         </div>
-        <div>
-          <p>${data.pricing[2].price}</p>
-          <p>${data.pricing[2].plan}</p>
+        <div class="p-2 bg-white rounded-4 fw-semibold text-danger hWCustom">
+          <span>${data.pricing[2].price}</span>
+          <span>${data.pricing[2].plan}</span>
         </div>
       </div>
-      <div>
-        <h2>Features</h2>
-        <ul>
-          <li>${data.features[1].feature_name}</li>
-          <li>${data.features[2].feature_name}</li>
-          <li>${data.features[3].feature_name}</li>
-        </ul>
-      </div>
-      <div>
-        <h2>Integrations</h2>
-        <ul>
-           <li>${data.integrations[0]}</li> 
-           <li>${data.integrations[1]}</li> 
-           <li>${data.integrations[2]}</li> 
-        </ul>
+      <div class="d-flex justify-content-around">
+        <div class="mt-2">
+          <h5 class="fw-bolder">Features</h5>
+          <ul>
+            <li>
+              <small>
+               ${data.features[1].feature_name}
+              </small>
+            </li>
+            <li>              
+              <small>
+               ${data.features[2].feature_name}
+              </small>
+            </li>
+            <li>              
+              <small>
+               ${data.features[3].feature_name}
+              </small>
+            </li>
+          </ul>
+        </div>
+        <div class="mt-2">
+          <h5 class="fw-bolder">Integrations</h5>
+          <ul>
+            <small>
+              <li>${data.integrations[0]}</li> 
+            </small>
+            <small>
+              <li>${data.integrations[1]}</li> 
+            </small>
+            <small>
+              <li>${data.integrations[2]}</li> 
+            </small>
+          </ul>
+        </div>
       </div>
     </div>
-    <div>
+    <div class="p-3 border rounded-3 mx-1">
       <h1>${data.accuracy.score * 100}</h1>
-      <img src=${data.image_link[0]} />
-      <p>${data.input_output_examples[0].input}</p>
+      <img class="w-100 rounded-3 mb-2" src=${data.image_link[0]} />
+      <h5>${data.input_output_examples[0].input}</h5>
       <p>${data.input_output_examples[0].output}</p>
     </div>
   </div>
